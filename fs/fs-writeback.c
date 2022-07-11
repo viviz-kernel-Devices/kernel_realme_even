@@ -1157,11 +1157,7 @@ static bool inode_dirtied_after(struct inode *inode, unsigned long t)
  */
 static int move_expired_inodes(struct list_head *delaying_queue,
 			       struct list_head *dispatch_queue,
-<<<<<<< HEAD
-			       unsigned long dirtied_before)
-=======
 			       int flags, unsigned long dirtied_before)
->>>>>>> 2140dcf5b2391ebf4470db5b95f08d45671f3f1f
 {
 	LIST_HEAD(tmp);
 	struct list_head *pos, *node;
@@ -1177,11 +1173,8 @@ static int move_expired_inodes(struct list_head *delaying_queue,
 		list_move(&inode->i_io_list, &tmp);
 		moved++;
 		spin_lock(&inode->i_lock);
-<<<<<<< HEAD
-=======
 		if (flags & EXPIRE_DIRTY_ATIME)
 			inode->i_state |= I_DIRTY_TIME_EXPIRED;
->>>>>>> 2140dcf5b2391ebf4470db5b95f08d45671f3f1f
 		inode->i_state |= I_SYNC_QUEUED;
 		spin_unlock(&inode->i_lock);
 		if (sb_is_blkdev_sb(inode->i_sb))
